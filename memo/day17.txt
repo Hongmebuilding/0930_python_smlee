@@ -1,0 +1,24 @@
+Day17
+
+1. Numpy II
+(7) unique(유일값)
+    행렬에서 유일한 값과 유일한 값의 개수
+    중복데이터를 제거한 벡터로 변환 후 각 개수를 출력
+
+(8) concatenate(행렬 합치기)
+    가로 합치기, 세로 합치기
+
+(9) split(자르기)
+    자르는 기준(index)을 split의 두 번째 파라미터에 입력
+
+(10) sort(정렬하기)
+    데이터를 순서대로 재배열
+
+2. Numpy Calculation
+(1) basic calculate(기본연산)
+    list의 연산과 ndarray의 연산은 다르다.
+(2) compare calculate(비교연산)
+(3) filtering
+    비교연산의 결과에서 True 결과만 남음
+(4) broadcasting
+    브로드캐스팅은 벡터, 매트릭스의 모든 데이터에 적용되는 개념

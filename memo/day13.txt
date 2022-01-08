@@ -1,0 +1,139 @@
+Day13
+
+0. Day12 Review
+(1) 클래스 실습
+    1) 용어
+        클래스 : 변수와 함수로 구성
+        매서드 : 클래스가 가지고 있는 함수
+        변수(필드) : 클래스가 가지고 있는 변수
+        객체 : 클래스(설계도)로 만들어지는 것
+        인스턴스 : 객체와 동일하나 클래스와의 관계 표현 시에 사용
+
+    2) 클래스 정의 문법
+        class ClassName:
+            <statement 1>
+            .
+            .
+            .
+            <statement N>
+
+    3) 변수 = ClassName()
+    4) class House:
+             pass
+
+        myhouse = House()
+    5) 클래스의 변수
+        -인스턴스 변수 : 인스턴스마다 다름, self.name와 같이 self.이 붙은 변수
+        -클래스 변수 : 클래스 내부에 선언된 함수
+    6) 생성자
+        인스턴스가 생성될 때 무조건 호출되는 함수
+        __init__(self, name)
+    7) DocString
+        클래스명 바로 아랫줄에 """~""" 클래스명.__doc__으로 참조가능
+    8) self
+        메서드면(self,param1, param2)의 파라미터는 2개
+
+(2) 예외처리
+    1) 예외 : 오류인데 개발자가 처리 가능한 오류
+    2) 사례 : 0으로 나누기
+    3) 대부분의 예외는 Exception 클래스로 처리됨
+    4) try:
+       except 예외명 as e:
+       except Exception as e:   # 예외의 else 역할
+       else:    # 오류가 무
+       finally: # 오류 유무 관계없이(default)
+    5) 사용자가 강제로 예외 발생
+        raise 예외클래스("문장")
+
+1. 웹 크롤링 준비
+(0) Chrome 브라우저
+(1) 개념
+    모듈 : 파일
+    패키지 : 파일이 있는 디렉토리
+    라이브러리 : 모듈들과 패키지
+(2) 파이썬에서 기본으로 제공하지 않는 라이브러리 설치하기
+    pip install 라이브러리명  # 내부
+        - 라이브러리를 자동으로 설치
+        * 필요한 다른 라이브러리들로 자동으로 설치
+        ** 최소 버전, 호환되는 최신 버전으로 설치
+    pip install 다운로드한 파일명
+        pypi.org(Official) 또는 암흑 사이트(http://www.lfd.uci.edu/~gohlke/pythonlibs/)
+        에서 whl 파일을 다운로드 하다보면 실패함. 오류가 발생하며 무슨 라이브러리가 없다는 힌트를 줌
+        pypi에서 또 다운로드하고 설치
+(3) requests 라이브러리 설치   # 외부
+    쉽게 웹사이트에 요청하는 것을 처리하는 라이브러리
+(4) BeautifulSoup4 설치
+    구문을 분석해서 필요한 내용만 추출하는 패키지
+    이상한 나라의 앨리스에서 가짜 거북이가 부르는 노래 Dinner Soup, Beautiful Soup
+    pip install BeautifulSoup4  # set에서 pac
+
+2. 웹크롤링의 이해
+(1) 웹 크롤링(Web Crawling)
+    크롤 : 기어니다라는 뜻
+    웹크롤러(최초의 검색엔진) - 웹사이트 내용을 수집하는 봇
+    크롤러가 하는일을 크롤링이라고 부름
+    웹 스크래핑(Scraping)이라고도 함
+(2) HTML(HyperText Markup Language)
+    웹페이지를 구성하는 언어
+    < >로 표시되어 있는 부분을 Tag
+    1) HTML 구조
+        <!doctype html>
+        <html>
+        <head>  # 숲
+            <title>창제목</title>
+            <meta></meta>
+        </head>
+        <body>  # 나무
+            <div class="container"> HTML </div>
+            <태그명 속성명="속성값">내용<종료태그>
+        </body>
+        </html>
+    2) 크롤링의 절차  # HTML -> python 가공
+        사이트를 살핀다 > HTML을 가져온다 > 분석하여 필요 데이터를 뽑는다
+
+3. requests로 웹 페이지 가져오기
+   import requests
+
+   url = "접속할 사이트 주소"
+   response = requests.get(url)
+
+   response에 각종 정보가 담겨서 들어오게 됨
+        status_code(상태코드) : 1XX(진행중), 2XX(완료), 3XX(완료되었으나 다른 페이지로 이동)
+                              4XX(사용자잘못), 5XX(서버오류)
+        encoding : 언어 설정 상태
+        text : 웹페이지 소스(우리 눈에 보기 쉬운 형태)  # 사람 때 묻은 content
+        content : 웹페이지 소스(모든 문자 그대로)
+        elapsed : 가져오는 데 걸린 시간
+
+    ** 웹 크롤링 시 한글 깨짐 처리
+    결과로 돌아오는 response 객체의 text 속성은 string
+    requests 모듈에서 자동으로 인코딩
+    requests가 HTTP 헤더를 보고 인코딩을 추츨 > encoding 속성에 지정
+    ISO-8899-1인 경우 영문 인코딩으로 인해 깨지게 됨
+
+    해결책) text를 읽기 전 response.encoding = None
+
+4. BeautifulSoup
+    가져온 데이터에서 원하는 데이터를 수집
+
+    (1) 기본 사용법
+    from bs4 import BeautifulSoup
+
+    url = '주소'
+    response = requests.get(url)
+    html = response.text
+    soup = BeautifulSoup(html, 'html.parser')   # 문법 규칙에 따라 분석하는 것
+
+    (2) 메서드
+    <태그명 속성명="속성값"> 내용 <종료태그>
+    find('TAG') : 태그 중에서 태그명이 TAG인 첫 번째 묶음
+    find('TAG').text : 위의 묶음 중 내용만
+    find('TAG').get('속성명') : 태그의 속성 중 속성명과 같은 것의 값
+
+    find_all('TAG') : 태그 중에서 태그명이 TAG인 모든 묶음
+    find_all('TAG')[0].txt : 위의 묶음 중 첫 번째 묶음의 내용    # find_all을 하게 되면
+                                                              결과가 list로 돌아온다
+
+    find, find_all ('태그명', class_='클래스명') : 클래스가 동일하면 공통적인 특징을 가짐
+    find('태그명', id='id명')
+    태그마다 id를 줄 수 있고 웹페이지 전체에서 동일한 아이디는 없음   # 유일무이

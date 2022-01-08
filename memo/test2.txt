@@ -1,0 +1,2 @@
+We are studying Python
+이것은 한글이죠

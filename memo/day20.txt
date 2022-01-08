@@ -1,0 +1,60 @@
+Day20
+
+0. Day19 Review
+(1) Pandas 기능
+    append : 데이터 합치기
+    concat : row나 column 기준을 합치기
+    groupby : row 데이터 가 반복될 때 합쳐서 새로운 df를 만드는 방법
+        size() : 건수
+        agg(*) : min, max, mean, median, sum
+
+(2) csv, Excel 다루기
+    xlsxwriter, xlrd, openpyxl
+    pd.to_excel : 엑셀 쓰기
+    pd.read_excel : 엑셀 읽기
+    pd.to_csv : csv 쓰기
+    pd.read_csv : csv 읽기
+
+1. Pandas에서 각 행 순차적으로 읽기
+   Pandas, Numpy 등은 벡터 연산을 하는데 높은 성능
+   행, 열로 순회하면서 단순 반복문으로 가져오면 성능 개선 없음
+
+   (1) intertuples, iterrows    # intertuples >> iterrows
+       - itertuples : DataFrame의 행을 nametuples로 반복  # 모두 다 변수처리
+       - iterrows : DataFrame의 행을 index와 Series로 반복 # index, Series 외 변수 처리
+
+       ex) DataFrame에 age, weight가 있다고 가정
+           for ntp in df.itertuples():
+               ntp.Index, ntp.age, ntp.weight
+
+           for idx, row in df.iterrows():
+               idx, row.age, row.weight
+
+   (2) iteritems, items
+       - 열 단위로 순회하는 함수로 두 개의 성능 차이는 거의 없음
+
+2. Follium
+   (1) Python에서 Leaf.js를 이용하여 지리 데이터를 효과적으로 시각화하는 패키지
+   (2) 지도와 좌표값을 이용하여 지도 html 파일을 생성
+   (3) 지도 상에 아이콘 등으로 시각적으로 표현
+   (4) Jupyter notebook에서는 web으로 자동으로 보여지며
+       PyCharm, VS code, Anaconda와 같은 통합개발환경(IDE)에서는 html로 저장
+   (5) 1. 마커 추가
+       - location : 마커를 추가할 위도/경도 좌표를 입력
+       - popup : 마우스 클릭시 표기되는 문구
+       - tooltip : 마우스 오버시 표기되는 문구
+       2. 지도에 추가
+       ex) folium.Marker(~).add_to(map) # map = folium.Map
+       3. html로 저장
+       ex) hmap.save('~.html')
+       4. webbrowser로 시각화
+       ex) webbrowser.open('~.html')
+
+3. tkinter
+   (1) Tcl/Tk를 파이썬 프로그램에 맞게 wrapping한 GUI 모듈
+   (2) TCL(Tool Command Language)의 약자로 프로그래밍 언어이며, tk가 GUI 툴킷
+   (3) 지원되는 위젯 부족, UI가 세련되지 않음
+   (4) Python 설치 시 같이 설치됨
+   (5) Python에서 GUI로 더 유명한 것은 PyQT6이지만 3.6까지만 지원
+
+   docker/k8s

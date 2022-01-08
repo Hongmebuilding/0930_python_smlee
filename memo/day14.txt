@@ -1,0 +1,81 @@
+Day4
+
+0. Day3 review
+(1) Web Crawling
+    웹사이트에서 정보를 수집하는 행위(HTML, API) #API: 함수 호출
+    requests, BeautifulSoup4 패키지를 사용
+(2) requests로 웹페이지 가져오기
+(3) BeautifulSoup로 웹페이지 해석하기
+    find(), find_all()
+    * 한글깨짐 처리 방법 : response.encoding = None
+
+1. 데이터 시각화(Visualization) - Deep Diving
+(1) 정의
+    데이터를 분석한 결과를 사용자가 쉽게 이해할 수 있도록 표현하여 전달하는 것
+(2) 장점
+    많은 양의 데이터도 한 눈에
+    전문 지식이 없어도 데이터를 인지하고 사용
+    단순한 데이터의 요약이나 나열보다 정확한 분석결과를 얻을 수 있다.
+    단순한 데이터에서는 알 수 없는 중요한 정보를 파악할 수 있다.
+(3) 파이썬에서의 데이터 시각화
+    metplotlib, wordcloud(3.8 이하), seaborn, piechart
+
+2. matplotlib
+(1) 설치
+    7개 모듈이 함께 설치됨
+(2) 기본 개념
+    figure : 그래프의 전체 영역
+    subplot : 실제 그래프를 그리는 영역, 한 개의 figure에 여러 개의 subplot이 존재 가능
+(3) 기본 사용법
+    import matplotlib.pyplot as plt
+    figure = plt.figure()
+    axes = figure.add_subplot(행, 열, 번호)
+    특이사항 : figure는 전체, 몇 개가 들어갈 것인지는 add_subplot에서 결정
+             add_subplot(2, 5, 3) : 2줄, 5열 10개의 그래프 중 3번째
+    plt.show()
+(4) 꺾은 선 그래프
+    plot(x, y) : x, y는 집합객체, x가 가로열, y가 새로열
+    plot에 넣을 수 있는 옵션들
+        linestyle(선 형태) : solid, dashed, dotted
+        linewidth(선 굵기) : pt(point 단위이며 실수)
+        color(선의 색상)   : r(빨강), b(파랑)
+        marker(표식)      : . o v ^
+        plot(x, y, linestyle='dashed', color='r')
+    * 한글깨짐 현상은 소스 참고
+(5) 막대 그래프
+    bar(x, y)
+(6) 산포 그래프(Scatter Plot)
+    scatter(x, y)
+    s로 점의 크기, c로 각 점의 색상
+(7) 파이 그래프(Pie Chart)
+    pie(x, y)
+    pie(x, y, label=리스트) : 각 부분에 라벨 추가
+    pie(x, y, autopct=값) : 각 부분에 수치 표시('%d%%':소수점없는%, '%0.1%%':소수점 1자리 %)    # decimal(10진수) + %
+    plt.legend(리스트) : 범례
+
+3. 자료구조(Data Structure)
+(1) 정의
+    자료 처리를 위해 컴퓨터가 잘 다룰 수 있는 형태로 표현하는 구조
+(2) 대분류
+    단순 자료구조 : 정수, 실수, 문자 등 언어가 기본적으로 제공하는 것
+    복합 자료구조 : 여러 개의 자료를 모은 자료구조
+                  배열 구조, 연결 구조(Linked List) # 중간에 끼울 수 있음
+
+    배열 구조 : 항목들을 인접한 메모리 영역에 나열, 인덱스로 위치를 한 번에 계산하여 접근
+              항목을 중간에 끼우거나 뺄 때 고비용
+              배열구조는 파이썬에서 리스트(변경 가능), 튜플(메모리 효율)
+
+    연결 구조 : Linked List
+              메모리 공간에 흩어진 자료들을 연결고리(link)를 이용해 연결한 구조
+              i번째 데이터를 찾아가려면 시작점부터 찾아가야 하므로 고비용
+              용량의 변경이나 항목의 추가, 삭제가 용이
+              단순연결구조와 이중연결구조가 있음
+
+(3) 리스트
+    - 선형 자료 구조
+    - 각 항목들은 순서(인덱스)를 갖는다
+    - 항목의 삽입이나 삭제가 가능
+
+
+
+

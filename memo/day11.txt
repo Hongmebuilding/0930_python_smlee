@@ -1,0 +1,65 @@
+query2erik@gmail.com
+[1900 python] 제목
+
+1. 기본 준비
+(1) 문자열 함수
+    str.format() : "제 이름은 {}입니다.".format("jwlee")
+    str.find(문자열) : 문자열이 위치하는 곳(인덱스)을 알려줌
+    str.lstrip(문자열), rstrip, strip : 문자열을 왼쪽, 오른쪽, 양쪽에서 제거
+        ex) "jwleeeeeeeee*".rstrip("e*")  => jwl
+    str.titlecase(문자열) : 각 단어의 첫영문자를 대문자로
+
+(2) 표준 모듈 소개
+    1) random
+       import random
+          random.randint(1,10) : 1~10 중의 정수 하나
+          random.randrange(1,10,2) : 1~10 중의 홀수 하나
+          random.random() : 0~1 사이의 실수 하나
+          random.choice(집합객체) : 집합객체 중 임의의 하나
+          random.sample(집합객체, n) : 집합객체 중 임의의 n개
+    2) math
+       import math
+          math.pi : 원주율
+          math.ceil(), floor(), trunc() : 올림, 내림, 버림
+
+    3) time
+       import time
+          time.time() : 현재시간. 1970/1/1 0시 기준의 초
+             a1 = time.time()
+             사용자 로직
+             a2 = time.time()
+             수행시간 = a2 - a1
+          time.strftime() : 형식을 갖춘 데이터 생성, '%Y%m%d %H:%M:%S'
+          time.sleep(초) : 입력한 초만큼 멈춤
+
+2. 파일 입출력
+    데이터는 파일, 웹, 데이터베이스 등 다양한 원천이 있음
+(1) 기본 사용법
+    파일변수(f) = open(파일명, 옵션, 인코딩)
+    파일변수로 파일을 사용(read, write류)  # w은 txt 만듦
+    파일변수.close()
+(2) 옵션
+    r(읽기), w(덮어쓰기), a(이어쓰기), x(없으면 만들기, 있으면 안만들기)
+(3) 인코딩
+    cp949(윈도우에서 다국어지원), utf-8(공용 다국어지원)
+
+3. 클래스와 객체, 객체지향
+(1) 역사
+    변수 : 하나의 값을 저장
+    배열 : 여러 개의 값을 저장
+    구조체(struct) : 다양한 형태의 값을 저장
+        cf) C언어 - typedef struct A { int age, char* name }
+    클래스(class) : 다양한 형태의 값 + 함수
+
+(2) 정의
+    클래스(class) : 설계도
+    객체(object) : 설계도로 만든 실제 작품
+    클래스는 자체로는 아무것도 아니며 객체로 구현될 때 의미를 갖는다.
+    cf) apple과 an apple(the apple)
+
+    객체지향 프로그래밍 : 클래스를 디자인하는 것
+    파이썬에서의 클래스는 객체지향과는 거리가 있음
+    단순히 다양한 변수들과 함수(메서드)들을 보유하고 있는 것
+    cf) C는 pointer, Java는 class 상속, Python은 numpy, pandas
+
+    1900pydt
